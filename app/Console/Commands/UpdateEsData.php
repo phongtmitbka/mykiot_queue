@@ -9,7 +9,7 @@ use Elasticsearch\ClientBuilder;
 
 class UpdateEsData extends Command
 {
-    const CHUNK_COUNT = 5000;
+    const CHUNK_COUNT = 1000;
     /**
      * The name and signature of the console command.
      *
