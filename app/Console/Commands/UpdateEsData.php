@@ -42,10 +42,10 @@ class UpdateEsData extends Command
     public function handle()
     {
         $esHost = [
-            env('ELASTICSEARCH_HOST', 'elasticsearch') . ':9200'
+            env('ELASTICSEARCH_HOST', 'elasticsearch') . ':' . env('ELASTICSEARCH_PORT', '9200')
         ];
         $client = ClientBuilder::create()->setHosts($esHost)->build();
-        $indexName = 'mk_products';
+        $indexName =  env('ELASTICSEARCH_INDEX_NAME', 'mk_products');
         if (!$client->indices()->exists(['index' => $indexName])) {
             $params = [
                 'index' => $indexName,

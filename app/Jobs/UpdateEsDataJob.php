@@ -34,10 +34,10 @@ class UpdateEsDataJob implements ShouldQueue
     public function handle()
     {
         $esHost = [
-            env('ELASTICSEARCH_HOST', 'elasticsearch') . ':9200'
+            env('ELASTICSEARCH_HOST', 'elasticsearch') . ':' . env('ELASTICSEARCH_PORT', '9200')
         ];
         $client = ClientBuilder::create()->setHosts($esHost)->build();
-        $indexName = 'mk_products';
+        $indexName =  env('ELASTICSEARCH_INDEX_NAME', 'mk_products');
         foreach ($this->products as $product) {
             $data = json_decode($product->data, true);
             $params = [
