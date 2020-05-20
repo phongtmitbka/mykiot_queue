@@ -113,7 +113,8 @@ class UpdateEsData extends Command
             ];
             $client->indices()->create($params);
         }
-        \DB::table('cache_products')->chunkById(UpdateEsData::CHUNK_COUNT, function ($products) {
+        \DB::table('cache_products')->where('updated_at', '>', ':sql_last_value')
+            ->chunkById(UpdateEsData::CHUNK_COUNT, function ($products) {
             try {
                 dispatch(new UpdateEsDataJob($products));
             } catch (\Exception $e) {
