@@ -8,6 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class UpdateEsDataJob implements ShouldQueue
 {
@@ -49,7 +50,7 @@ class UpdateEsDataJob implements ShouldQueue
             try {
                 $client->index($params);
             } catch (\Exception $e) {
-                echo $e->getMessage();
+                Log::error($e->getMessage());
             }
         }
     }
