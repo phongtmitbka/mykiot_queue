@@ -116,12 +116,12 @@ class UpdateEsData extends Command
             $client->indices()->create($params);
         }
         $lastUpdateTime = Redis::get('LAST_UPDATE_TIME_ES_DATA') ?? '1970:01:01';
-        Log::debug($lastUpdateTime);
         $currentTime = Carbon::now();
         \DB::table('cache_products')
             ->where('updated_at', '>=', $lastUpdateTime)
             ->chunkById(UpdateEsData::CHUNK_COUNT, function ($products) use ($currentTime) {
             try {
+                Log::debug($products->count());
                 dispatch(new UpdateEsDataJob($products));
                 Redis::set('LAST_UPDATE_TIME_ES_DATA', $currentTime);
             } catch (\Exception $e) {

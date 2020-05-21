@@ -49,7 +49,7 @@ class UpdateEsDataJob implements ShouldQueue
                 ];
                 $client->index($params);
             } catch (\Exception $e) {
-                Log::error($e->getMessage());
+                Log::error($e->getMessage() . $product->data);
             }
         }
     }
