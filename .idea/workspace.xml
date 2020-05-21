@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fd774a17-1a9a-45f6-a2fe-a74192c93a34" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/CacheProduct.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/UpdateEsData.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/UpdateEsData.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Jobs/UpdateEsDataJob.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Jobs/UpdateEsDataJob.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/logging.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/logging.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +173,7 @@
       <option name="presentableId" value="Default" />
       <updated>1589947234513</updated>
       <workItem from="1589947235911" duration="15161000" />
-      <workItem from="1590026161901" duration="1814000" />
+      <workItem from="1590026161901" duration="2872000" />
     </task>
     <servers />
   </component>
@@ -201,9 +201,9 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2543" y="237" width="672" height="678" key="search.everywhere.popup/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589969247228" />
-    <state x="2605" y="453" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1589949665526">
+    <state x="2605" y="453" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1590028910972">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2605" y="453" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589949665526" />
+    <state x="2605" y="453" width="540" height="172" key="vcs.readOnlyHandler.ReadOnlyStatusDialog/67.27.1853.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1590028910972" />
   </component>
 </project>

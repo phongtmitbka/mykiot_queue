@@ -39,18 +39,14 @@ class UpdateEsDataJob implements ShouldQueue
         $client = ClientBuilder::create()->setHosts($esHost)->build();
         $indexName =  env('ELASTICSEARCH_INDEX_NAME', 'mk_products');
         foreach ($this->products as $product) {
-            try {
-                $data = json_decode($product->data, true);
-                $params = [
-                    'index' => $indexName,
-                    'id' => $product->refer_id,
-                    'body' => $data ? $data : [],
-                    'type' => '_doc'
-                ];
-                $client->index($params);
-            } catch (\Exception $e) {
-                Log::error($e->getMessage() . $product->data);
-            }
+            $data = json_decode($product->data, true);
+            $params = [
+                'index' => $indexName,
+                'id' => $product->refer_id,
+                'body' => $data ? $data : [],
+                'type' => '_doc'
+            ];
+            $client->index($params);
         }
     }
 }
