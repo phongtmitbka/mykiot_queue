@@ -9,7 +9,7 @@ use Laravel\Horizon\HorizonApplicationServiceProvider;
 class HorizonServiceProvider extends HorizonApplicationServiceProvider
 {
     protected $allowAccessIps = [
-        '172.19.0.11'
+        '172.19.0.1'
     ];
     /**
      * Bootstrap any application services.
