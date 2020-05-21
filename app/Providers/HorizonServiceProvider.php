@@ -8,9 +8,6 @@ use Laravel\Horizon\HorizonApplicationServiceProvider;
 
 class HorizonServiceProvider extends HorizonApplicationServiceProvider
 {
-    protected $allowAccessIps = [
-        '172.19.0.1'
-    ];
     /**
      * Bootstrap any application services.
      *
@@ -27,7 +24,7 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
         // Horizon::night();
 
         Horizon::auth(function () {
-            return (env('APP_ENV', 'local') !== 'production' || in_array(\request()->ip(), $this->allowAccessIps));
+            return true;
         });
     }
 
