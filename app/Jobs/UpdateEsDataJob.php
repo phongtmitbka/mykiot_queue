@@ -40,9 +40,10 @@ class UpdateEsDataJob implements ShouldQueue
         $indexName =  env('ELASTICSEARCH_INDEX_NAME', 'mk_products');
         foreach ($this->products as $product) {
             $data = json_decode($product->data, true);
+            $data['referId'] = intval($product->refer_id);
             $params = [
                 'index' => $indexName,
-                'id' => $product->refer_id,
+                'id' => $product->id,
                 'body' => $data ? $data : [],
                 'type' => '_doc'
             ];
