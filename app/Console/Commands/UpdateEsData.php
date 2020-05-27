@@ -118,7 +118,10 @@ class UpdateEsData extends Command
         $lastUpdateTime = Redis::get('LAST_UPDATE_TIME_ES_DATA') ?? '1970:01:01';
         $currentTime = Carbon::now();
         \DB::table('cache_products')
-            ->join('products', 'cache_products.refer_id', '=', 'products.refer_id')
+            ->join('products', function ($join) {
+                $join->on( 'cache_products.refer_id', '=', 'products.refer_id');
+                $join->on( 'cache_products.store_id', '=', 'products.store_id');
+            })
             ->where('cache_products.updated_at', '>=', $lastUpdateTime)
             ->select('cache_products.id as id', 'cache_products.refer_id as refer_id', 'cache_products.data as data', 'products.views as views', 'products.sold_count as sold_count')
             ->orderBy('cache_products.id')->chunk(UpdateEsData::CHUNK_COUNT, function ($products) use ($currentTime) {
