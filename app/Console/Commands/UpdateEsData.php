@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Redis;
 
 class UpdateEsData extends Command
 {
-    const CHUNK_COUNT = 1000;
+    const CHUNK_COUNT = 500;
     /**
      * The name and signature of the console command.
      *
@@ -24,7 +24,7 @@ class UpdateEsData extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Update es data';
 
     /**
      * Create a new command instance.
@@ -118,10 +118,11 @@ class UpdateEsData extends Command
         $lastUpdateTime = Redis::get('LAST_UPDATE_TIME_ES_DATA') ?? '1970:01:01';
         $currentTime = Carbon::now();
         \DB::table('cache_products')
-            ->where('updated_at', '>=', $lastUpdateTime)
-            ->chunkById(UpdateEsData::CHUNK_COUNT, function ($products) use ($currentTime) {
+            ->join('products', 'cache_products.refer_id', '=', 'products.refer_id')
+            ->where('cache_products.updated_at', '>=', $lastUpdateTime)
+            ->select('cache_products.id as id', 'cache_products.refer_id as refer_id', 'cache_products.data as data', 'products.views as views', 'products.sold_count as sold_count')
+            ->orderBy('cache_products.id')->chunk(UpdateEsData::CHUNK_COUNT, function ($products) use ($currentTime) {
             try {
-                Log::debug($products->count());
                 dispatch(new UpdateEsDataJob($products));
                 Redis::set('LAST_UPDATE_TIME_ES_DATA', $currentTime);
             } catch (\Exception $e) {
