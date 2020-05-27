@@ -124,13 +124,13 @@ class UpdateEsData extends Command
             })
             ->where('cache_products.updated_at', '>=', $lastUpdateTime)
             ->select('cache_products.id as id', 'cache_products.refer_id as refer_id', 'cache_products.data as data', 'products.views as views', 'products.sold_count as sold_count')
-            ->orderBy('cache_products.id')->chunk(UpdateEsData::CHUNK_COUNT, function ($products) use ($currentTime) {
+            ->chunkById(UpdateEsData::CHUNK_COUNT, function ($products) use ($currentTime) {
             try {
                 dispatch(new UpdateEsDataJob($products));
                 Redis::set('LAST_UPDATE_TIME_ES_DATA', $currentTime);
             } catch (\Exception $e) {
                 Log::error($e->getMessage());
             }
-        });
+        }, 'cache_products.id', 'id');
     }
 }
