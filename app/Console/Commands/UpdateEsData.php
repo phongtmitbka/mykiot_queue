@@ -76,6 +76,28 @@ class UpdateEsData extends Command
                     ],
                     "mappings" => [
                         "properties" => [
+                            "name" => [
+                                "type" => "text",
+                                "fields" => [
+                                    "keyword" => [
+                                        "type" => "text",
+                                        "fielddata" => true,
+                                        "analyzer" => "analyzer_keywords",
+                                        "search_analyzer" => "analyzer_keywords"
+                                    ]
+                                ]
+                            ],
+                            "code" => [
+                                "type" => "text",
+                                "fields" => [
+                                    "keyword" => [
+                                        "type" => "text",
+                                        "fielddata" => true,
+                                        "analyzer" => "keyword",
+                                        "search_analyzer" => "analyzer_keywords"
+                                    ]
+                                ]
+                            ],
                             "attributes" => [
                                 "type" => "nested",
                                 "properties" => [
