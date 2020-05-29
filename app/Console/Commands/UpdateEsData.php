@@ -124,12 +124,6 @@ class UpdateEsData extends Command
                                         ],
                                     ]
                                 ]
-                            ],
-                            "inventories" => [
-                                'type' => 'nested'
-                            ],
-                            "priceBooks" => [
-                                'type' => 'nested'
                             ]
                         ]
                     ]
