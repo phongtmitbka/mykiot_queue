@@ -50,7 +50,7 @@ class UpdateEsDataDaily extends Command
                 $join->on( 'cache_products.store_id', '=', 'products.store_id');
             })
             ->where('products.updated_at', '>=', $lastUpdateTime)
-            ->select('cache_products.id as id', 'cache_products.refer_id as refer_id', 'cache_products.data as data', 'products.views as views', 'products.sold_count as sold_count')
+            ->select('cache_products.id as id', 'cache_products.refer_id as refer_id', 'cache_products.data as data', 'products.views as views', 'products.sold_count as sold_count', 'products.status as status')
             ->chunkById(UpdateEsDataDaily::CHUNK_COUNT, function ($products) use ($currentTime) {
                 try {
                     dispatch(new UpdateEsDataJob($products));

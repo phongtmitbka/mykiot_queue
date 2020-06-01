@@ -23,7 +23,7 @@ Package
 #### 4. Config CronTab
 - Run: crontab -e and paste
 ```
-* * * * * php /var/www/mykiot_elasticsearchy/artisan schedule:run 1>> /dev/null 2>&1
+* * * * * php /var/www/mykiot-queue/artisan schedule:run 1>> /dev/null 2>&1
 ```
 
 #### 5. Config Supervisord
