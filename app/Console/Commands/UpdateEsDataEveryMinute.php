@@ -9,7 +9,7 @@ use App\Jobs\UpdateEsDataJob;
 use Elasticsearch\ClientBuilder;
 use Illuminate\Support\Facades\Redis;
 
-class UpdateEsData extends Command
+class UpdateEsDataEveryMinute extends Command
 {
     const CHUNK_COUNT = 500;
     /**
@@ -17,7 +17,7 @@ class UpdateEsData extends Command
      *
      * @var string
      */
-    protected $signature = 'update:es-data';
+    protected $signature = 'update:es-data-every-minute';
 
     /**
      * The console command description.
@@ -140,7 +140,7 @@ class UpdateEsData extends Command
             })
             ->where('cache_products.updated_at', '>=', $lastUpdateTime)
             ->select('cache_products.id as id', 'cache_products.refer_id as refer_id', 'cache_products.data as data', 'products.views as views', 'products.sold_count as sold_count')
-            ->chunkById(UpdateEsData::CHUNK_COUNT, function ($products) use ($currentTime) {
+            ->chunkById(UpdateEsDataEveryMinute::CHUNK_COUNT, function ($products) use ($currentTime) {
             try {
                 dispatch(new UpdateEsDataJob($products));
                 Redis::set('LAST_UPDATE_TIME_ES_DATA', $currentTime);

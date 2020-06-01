@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 use App\Jobs\UpdateEsDataJob;
 use Illuminate\Support\Facades\Redis;
 
-class UpdateProductData extends Command
+class UpdateEsDataDaily extends Command
 {
     const CHUNK_COUNT = 500;
     /**
@@ -16,7 +16,7 @@ class UpdateProductData extends Command
      *
      * @var string
      */
-    protected $signature = 'update:product-data';
+    protected $signature = 'update:es-data-daily';
 
     /**
      * The console command description.
@@ -51,7 +51,7 @@ class UpdateProductData extends Command
             })
             ->where('products.updated_at', '>=', $lastUpdateTime)
             ->select('cache_products.id as id', 'cache_products.refer_id as refer_id', 'cache_products.data as data', 'products.views as views', 'products.sold_count as sold_count')
-            ->chunkById(UpdateProductData::CHUNK_COUNT, function ($products) use ($currentTime) {
+            ->chunkById(UpdateEsDataDaily::CHUNK_COUNT, function ($products) use ($currentTime) {
                 try {
                     dispatch(new UpdateEsDataJob($products));
                     Redis::set('LAST_UPDATE_TIME_PRODUCT_DATA', $currentTime);
