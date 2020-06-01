@@ -44,6 +44,7 @@ class UpdateEsDataJob implements ShouldQueue
             $data['referId'] = intval($product->refer_id);
             $data['views'] = intval($product->views);
             $data['sold_count'] = intval($product->sold_count);
+            $data['status'] = $product->status;
             $data['priceBooks'] =  $data['priceBooks'] ?? [];
             $data['inventories'] =  $data['inventories'] ?? [];
 
