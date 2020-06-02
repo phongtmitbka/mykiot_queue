@@ -54,7 +54,7 @@ class UpdateEsDataJob implements ShouldQueue
 
             $params = [
                 'index' => $indexName,
-                'id' => $product->id,
+                'id' => $product->store_id . '_' . $product->refer_id,
                 'body' => $data ? $data : [],
                 'type' => '_doc'
             ];
