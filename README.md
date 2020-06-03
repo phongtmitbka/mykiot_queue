@@ -35,7 +35,6 @@ command=php /var/www/ecatalog/artisan queue:work --sleep=1 --tries=3 --daemon
 autostart=true
 autorestart=true
 numprocs=20
-#user=laradock
 redirect_stderr=true
 ```
 
