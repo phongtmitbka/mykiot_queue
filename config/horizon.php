@@ -168,7 +168,7 @@ return [
         'production' => [
             'supervisor-1' => [
                 'connection' => 'redis',
-                'queue' => ['default'],
+                'queue' => ['mk_queue'],
                 'balance' => 'simple',
                 'processes' => env('WORKER_PROCESS', 5),
                 'tries' => 3,
@@ -178,7 +178,7 @@ return [
         'local' => [
             'supervisor-1' => [
                 'connection' => 'redis',
-                'queue' => ['default'],
+                'queue' => ['mk_queue'],
                 'balance' => 'simple',
                 'processes' => env('WORKER_PROCESS', 5),
                 'tries' => 3,
