@@ -41,3 +41,4 @@ redirect_stderr=true
 
 #### 6. Test
 - Check data at ElasticSearch
+curl -X GET 'http://localhost:9200/mk_products/_count'
