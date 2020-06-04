@@ -58,6 +58,6 @@ class UpdateEsDataDaily extends Command
                 } catch (\Exception $e) {
                     Log::error($e->getMessage());
                 }
-            });
+            }, 'cache_products.id', 'id');
     }
 }
