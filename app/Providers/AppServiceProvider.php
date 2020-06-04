@@ -23,6 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        @ini_set('memory_limit', '1024M');
     }
 }
