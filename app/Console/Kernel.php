@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('update:es-data-every-minute')->everyMinute()->withoutOverlapping();
-        $schedule->command('update:es-data-daily')->dailyAt('00:00');
+        $schedule->command('update:es-data-daily')->everyMinute();
     }
 
     /**
